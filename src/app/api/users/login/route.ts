@@ -33,20 +33,18 @@ export async  function POST(req:NextRequest){
 
       
         
-        const userpassword={
-            passowrdu:user.password,
-        }
+       
 
     if (password === undefined) {
-        return { success: false, message: 'Password cannot be undefined' };
+        return NextResponse.json({ message: 'Invalid password format' }, { status: 400 });
     }
 
     if (typeof password !== 'string') {
-        return { success: false, message: 'Invalid password format' };
+        return NextResponse.json({ message: 'Invalid password format' }, { status: 400 });
     }
 
     if (typeof user.password !== 'string') {
-        return { success: false, message: 'Invalid stored password format' };
+        return NextResponse.json({ message: 'Invalid password format' }, { status: 400 });
     }
 
         const validPassword=  bcryptjs.compare(password,user.password)
