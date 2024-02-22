@@ -2,7 +2,7 @@ import { NextResponse,NextRequest  } from "next/server";
 import { connect } from "@/db/db";
 import User from "@/models/usermodel";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 
 export function GET(){
@@ -20,28 +20,42 @@ export async  function POST(req:NextRequest){
         const reqBody = await req.json()
         const {username, password} = reqBody
         
-
-        if(!username || !password){
-            return NextResponse.json({ message:"Username or password required"},{status:300})
-        }
-
         const user = await User.findOne({username})
 
         if(!user){
 
             return NextResponse.json({ message:"You are not registered"}, {status:300})
         }
+
+        if(!username || !password){
+            return NextResponse.json({ message:"Username or password required"},{status:300})
+        }
+
+      
         
         const userpassword={
             passowrdu:user.password,
         }
-        
-        const validPassword= await bcrypt.compare(password,user.password)
+
+    if (password === undefined) {
+        return { success: false, message: 'Password cannot be undefined' };
+    }
+
+    if (typeof password !== 'string') {
+        return { success: false, message: 'Invalid password format' };
+    }
+
+    if (typeof user.password !== 'string') {
+        return { success: false, message: 'Invalid stored password format' };
+    }
+
+        const validPassword=  bcryptjs.compare(password,user.password)
 
         if(!validPassword){
              NextResponse.json({error: "Invalid password"}, {status: 400})
         }
 
+      
         const tokenid= {
             id:user._id,
         }
