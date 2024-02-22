@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 export async function connect() {
     try {
         const options = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            
             serverSelectionTimeoutMS: 30000, // 30 seconds timeout for server selection
             socketTimeoutMS: 45000, // 45 seconds timeout for socket connections
         };
