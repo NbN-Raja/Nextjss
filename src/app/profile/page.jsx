@@ -12,9 +12,7 @@ export default function ProfilePage() {
       </div>
 
 
-      <div className="">
-        
-      </div>
+     
 
     </div>
     
