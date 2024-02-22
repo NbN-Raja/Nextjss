@@ -75,7 +75,6 @@ export async  function POST(req:NextRequest){
         return response;
 
 
-        return NextResponse.json({message:"user successfully logined ",token })
     } catch (error:any ) {
         console.error(error)
         return NextResponse.json({ message:"Username or password required",errorMessage:error.message},{status:500})
