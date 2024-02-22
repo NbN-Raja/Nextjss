@@ -50,7 +50,7 @@ export default function BlogcontentPosts() {
                 <div className="avatar h-10 w-10 bg-white rounded-full mt-5"></div>
                 {/* User details */}
                 <div className="p-2">
-                    <input type="text" name="content" className='p-5 rounded-md' value={formData.content} onChange={handleChange} placeholder="Blog content" />
+                    <input type="text" name="content" className='p-5 rounded-md text-black' value={formData.content} onChange={handleChange} placeholder="Blog content" />
                     <input type="submit" value="Post" className='bg-green-500 rounded-full p-3 ml-2' />
                 </div>
             </form>
