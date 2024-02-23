@@ -41,8 +41,7 @@ export default function BlogcontentPosts() {
     };
 
     return (
-        <div className="">
-                            <p className="text-5xl leading-1 flex justify-center items-center ">My first simple Blog posts</p>
+        <div className="p-4 pb-4">
 
         <div className="flex justify-center ">
 
@@ -50,8 +49,8 @@ export default function BlogcontentPosts() {
                 <div className="avatar h-10 w-10 bg-white rounded-full mt-5"></div>
                 {/* User details */}
                 <div className="p-2">
-                    <input type="text" name="content" className='p-5 rounded-md text-black' value={formData.content} onChange={handleChange} placeholder="Blog content" />
-                    <input type="submit" value="Post" className='bg-green-500 rounded-full p-3 ml-2' />
+                    <input type="text" name="content" className='p-5 rounded-md text-black bg-black' value={formData.content} onChange={handleChange} placeholder="Add Quicky" />
+                    <input type="submit" value="Quick" className='bg-green-500 rounded-full p-3 ml-2' />
                 </div>
             </form>
         </div>
