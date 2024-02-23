@@ -46,7 +46,7 @@ export default function Home() {
               type="search"
               name="search"
               placeholder="search ..."
-              className="rounded-md h-10 pb-2 pt-1 pl-2 w-full "
+              className="rounded-md h-10 pb-2 pt-1 pl-2 w-full text-white "
             />
           </div>
         </div>
