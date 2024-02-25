@@ -4,6 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export default function BlogcontentPosts() {
+    const [isSubmitting, setIsSubmitting] = useState(false); // State to track form submission
+
     const [formData, setFormData] = useState({
         content: ''
     });
@@ -15,8 +17,14 @@ export default function BlogcontentPosts() {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!formData.content.trim()) {
+            console.error('Content cannot be empty');
+            return; // Exit early if content is empty
+        }
         
         try {
+            setIsSubmitting(true); // Set isSubmitting to true when form is submitted
+
             // Send form data to your server endpoint
             const response = await axios.post('/api/blog/post', formData);
 
@@ -31,6 +39,9 @@ export default function BlogcontentPosts() {
             });
         } catch (error) {
             console.error('Error submitting blog post:', error);
+        } finally{
+            setIsSubmitting(false); // Set isSubmitting back to false after submission
+
         }
     };
     return (
@@ -42,7 +53,7 @@ export default function BlogcontentPosts() {
                 <div className="p-2">
                     <input type="text" name="content" className='p-5 rounded-md bg-black text-white ' value={formData.content} onChange={handleChange} placeholder="Add Quicky" />
 
-                    <input type="submit" value="Quick" className='bg-green-500 rounded-full p-3 ml-2' />
+                    <input type="submit" value="Quick" className={`bg-green-500 rounded-full p-3 ml-2 ${isSubmitting ? 'w-16' : 'w-24'}`} />
                 </div>
             </form>
         </div>

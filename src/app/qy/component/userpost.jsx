@@ -2,19 +2,22 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Skeletonloader from "../component/loader"
-import Link from 'next/link';
+import Skeletonloader from "../../component/loader"
 
-export default function BlogPost() {
+export default function UserPosts() {
     const [blogPosts, setBlogPosts] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true); // State to track loading status
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("/api/blog/post");
+                const response = await axios.get("/api/blog/getbyid");
                 setBlogPosts(response.data.data.reverse());
                 setLoading(false); // Set loading to false once data is fetched
 
@@ -69,21 +72,27 @@ export default function BlogPost() {
                         <div className="">
                             <div className="avatar bg-white h-[40px] w-[40px] rounded-full"></div>
                         </div>
-                        <div className="mr-60">
-  <div className="username text-md font-semibold">
-    <Link href={`/qy/${post.user.username}`}>
-      <p>{post.user.username}</p>
-    </Link>
-  </div>
-  <div className="time text-[12px] text-gray-400 font-semibold">{formatTimestamp(post.timeStamp)}</div>
-</div>
-                        <div className=" ">
-                            <p>:</p>
+                        <div className="mr-60 ">
+                            <div className="username text-md font-semibold">{post.user.username}</div>
+                            <div className="time text-[12px] text-gray-400 font-semibold">{formatTimestamp(post.timeStamp)}</div>
+                        </div>
+                        <div className="p-2" onClick={toggleMenu}>
+                              
+                                <button onClick={toggleMenu}> :::</button>
+                              
                         </div>
                     </div>
                     <div className="blogdetails p-1 mt-3">
                         <p>{post.content}</p>
+                        {isMenuOpen && (
+                <div className="absolute  bg-white border border-gray-200 rounded shadow">
+                    <button className="block p-2 text-sm text-gray-600 hover:bg-gray-100 w-full text-left">Update</button>
+                    <button className="block p-2 text-sm text-gray-600 hover:bg-gray-100 w-full text-left">Delete</button>
+                </div>
+            )}
                     </div>
+                    {/* Popup menu */}
+          
                     {/* like comment sections */}
                     <div className="flex justify-around p-1 mt-3">
                         <div className=""> &#128077; like </div>
