@@ -59,7 +59,7 @@ export default function UserProfile({params}) {
             <div className="w-full justify-evenly flex mt-8">
                 {/* Posts */}
                 <h2 className="text-xl font-bold mb-4">Quicks</h2>
-                <h2 className="text-xl font-bold mb-4">Reply</h2>
+                <h2 className="text-xl font-bold mb-5">Reply</h2>
                 {/* Render your posts here */}
             </div>
         </div>
