@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
 
       // Combine blog posts with user details
       const data = blogs.map(blog => {
-          const user = users.find(u => u._id.equals(blog.userId)); // Find user details for the current blog post
-          return { ...blog.toObject(), user }; // Combine blog post with user details
+          const user = users.find(u => u._id.equals(blog.userId)); 
+          return { ...blog.toObject(), user }; 
       });
 
       // Return the combined data in the response

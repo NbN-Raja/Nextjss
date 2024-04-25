@@ -6,7 +6,9 @@ const blogSchema = new mongoose.Schema({
         ref: 'User'
     },
         timeStamp: { type: Date, default: Date.now }, // Fixed: Use type Date and default value for timeStamp
-    content: String
+    content: String,
+    like: Number,
+    comment: String,
 });
 
 mongoose.models = {};
