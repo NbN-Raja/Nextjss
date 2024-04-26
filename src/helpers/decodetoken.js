@@ -14,6 +14,7 @@ export  const decodetoken= (req)=>{
         const decodedtoken= jwt.decode(getToken, process.env.Token_SECRET);
 
         return decodedtoken.id;
+        // Decoded id
         
     } catch (error) {
         console.error(error)
